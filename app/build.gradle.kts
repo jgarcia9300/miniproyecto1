@@ -111,4 +111,7 @@ dependencies {
 
     //Glide
     implementation ("com.github.bumptech.glide:glide:4.12.0")
+
+    //Biometric
+    implementation ("androidx.biometric:biometric:1.1.0")
 }
