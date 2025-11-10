@@ -20,4 +20,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "miniproyecto1"
-include(":miniproyecto1")
+include(":app")
