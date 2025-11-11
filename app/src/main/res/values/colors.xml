@@ -12,4 +12,5 @@
     <color name="inv_gray_toolbar">#424242</color>
     <color name="inv_orange">#E7522E</color>
     <color name="inv_white">#FFFFFFFF</color>
+    <color name="backgroundColor">#353338</color>
 </resources>
