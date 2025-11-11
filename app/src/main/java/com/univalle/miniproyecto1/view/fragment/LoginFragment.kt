@@ -48,7 +48,7 @@ class LoginFragment : Fragment() {
                                                    errString: CharSequence) {
                     super.onAuthenticationError(errorCode, errString)
                     Toast.makeText(context,
-                        "Autenticacion cancelada", Toast.LENGTH_SHORT)
+                        "Error de autenticacion. $errString", Toast.LENGTH_SHORT)
                         .show()
                 }
 
@@ -56,7 +56,7 @@ class LoginFragment : Fragment() {
                     result: BiometricPrompt.AuthenticationResult) {
                     super.onAuthenticationSucceeded(result)
                     Toast.makeText(context,
-                        "Autenticacion exitosa", Toast.LENGTH_SHORT)
+                        "Autenticacion exitosa. Bienvenido", Toast.LENGTH_SHORT)
                         .show()
                     findNavController().navigate(R.id.action_loginFragment_to_testFragment)
                 }
