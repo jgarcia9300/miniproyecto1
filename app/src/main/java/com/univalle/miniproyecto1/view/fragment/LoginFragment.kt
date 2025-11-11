@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.univalle.miniproyecto1.R
 import com.univalle.miniproyecto1.databinding.FragmentLoginBinding
 
-
+@Suppress("DEPRECATION")
 class LoginFragment : Fragment() {
    private lateinit var binding: FragmentLoginBinding
 
