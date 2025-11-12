@@ -11,13 +11,12 @@
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_loginFragment_to_testFragment"
-            app:destination="@id/testFragment" />
+            android:id="@+id/action_loginFragment_to_homeFragment2"
+            app:destination="@id/homeFragment" />
     </fragment>
-
     <fragment
-        android:id="@+id/testFragment"
-        android:name="com.univalle.miniproyecto1.view.fragment.TestFragment"
-        android:label="testFragment"
-        tools:layout="@layout/fragment_test" />
+        android:id="@+id/homeFragment"
+        android:name="com.univalle.miniproyecto1.view.fragment.HomeFragment"
+        android:label="HomeFragment" />
+
 </navigation>

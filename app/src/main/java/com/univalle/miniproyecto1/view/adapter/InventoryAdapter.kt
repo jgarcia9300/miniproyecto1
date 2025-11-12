@@ -4,8 +4,9 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
-import com.univalle.miniproyecto1.databinding.InventoryItemBinding
+import com.univalle.miniproyecto1.databinding.ItemInventoryBinding
 import com.univalle.miniproyecto1.model.Inventory
+import com.univalle.miniproyecto1.view.viewholder.InventoryViewHolder
 
 
 class InventoryAdapter (private val listInventory:MutableList<Inventory>, private val navController: NavController):RecyclerView.Adapter<InventoryViewHolder>() {

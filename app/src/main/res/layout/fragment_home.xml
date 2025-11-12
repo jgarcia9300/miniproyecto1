@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/inv_black_80"
-        tools:context=".view.fragment.HomeInventoryFragment">
+        tools:context=".view.fragment.HomeFragment">
 
         <include
             android:id="@+id/contentToolbar"
@@ -25,19 +25,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:listitem="@layout/inventory_item" />
+            tools:listitem="@layout/item_inventory" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fbagregar"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:contentDescription="@string/button_add"
             android:layout_marginRight="31dp"
-            android:backgroundTint="@color/inv_orange"
             android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/inv_orange"
+            android:contentDescription="@string/button_add"
             android:src="@drawable/ic_add"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
 
         <ProgressBar

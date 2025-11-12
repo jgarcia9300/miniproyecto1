@@ -11,37 +11,37 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.univalle.miniproyecto1.R
-import com.univalle.miniproyecto1.databinding.FragmentHomeInventoryBinding
+import com.univalle.miniproyecto1.databinding.FragmentHomeBinding
 import com.univalle.miniproyecto1.view.adapter.InventoryAdapter
 import com.univalle.miniproyecto1.viewmodel.InventoryViewModel
 
 
 class HomeFragment : Fragment() {
-    private lateinit var binding: FragmentHomeInventoryBinding
+    private lateinit var binding: FragmentHomeBinding
     private val inventoryViewModel: InventoryViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeInventoryBinding.inflate(inflater)
+        binding = FragmentHomeBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        controladores()
+        /*controladores()*/
         observadorViewModel()
 
     }
 
-    private fun controladores() {
+    /*private fun controladores() {
         binding.fbagregar.setOnClickListener {
-            findNavController().navigate(R.id.action_homeInventoryFragment_to_addItemFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_addItemFragment)
         }
 
-    }
+    }*/
 
     private fun observadorViewModel(){
         observerListInventory()
