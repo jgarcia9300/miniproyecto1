@@ -1,17 +1,14 @@
 package com.univalle.miniproyecto1.model
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import java.io.Serializable
 
-@Entity(tableName = "inventory_table")
+@Entity(tableName = "inventory")
 data class Inventory(
-    // id como llave primariay autoincrementable
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
-    // resto de campos de la tabla
-    val code: Int,
-    val name: String,
-    val price: Int,
-    val quantity: Int): Serializable
-
+    @PrimaryKey(autoGenerate = true) val id: Int = 0,
+    @ColumnInfo(name = "code") val code: String,
+    @ColumnInfo(name = "name") val name: String,
+    @ColumnInfo(name = "price_cents") val priceCents: Long,
+    @ColumnInfo(name = "quantity") val quantity: Int
+)
