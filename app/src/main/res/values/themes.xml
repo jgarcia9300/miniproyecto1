@@ -1,5 +1,11 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Base.Theme.miniproyecto1" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="android:colorControlNormal">@color/white</item>
+        <item name="titleTextColor">@color/white</item>
+    </style>
 
-    <style name="Theme.Miniproyecto1" parent="android:Theme.Material.Light.NoActionBar" />
+
+
+
 </resources>

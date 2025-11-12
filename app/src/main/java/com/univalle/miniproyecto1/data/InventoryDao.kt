@@ -1,20 +1,26 @@
 package com.univalle.miniproyecto1.data
 
-import androidx.room.*
+import androidx.room.Dao
+import androidx.room.Delete
+import androidx.room.Insert
+import androidx.room.OnConflictStrategy
+import androidx.room.Query
+import androidx.room.Update
+// Llamado a la tabla Inventory
 import com.univalle.miniproyecto1.model.Inventory
 
+// CRUD
 @Dao
 interface InventoryDao {
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun saveInventory(item: Inventory)
+    suspend fun saveInventory(inventory: Inventory)
 
-    @Query("SELECT * FROM inventory ORDER BY id DESC")
-    suspend fun getListInventory(): List<Inventory>
+    @Query("SELECT * FROM Inventory")
+    suspend fun getListInventory(): MutableList<Inventory>
 
     @Delete
-    suspend fun deleteInventory(item: Inventory)
+    suspend fun deleteInventory(inventory: Inventory)
 
     @Update
-    suspend fun updateInventory(item: Inventory)
+    suspend fun updateInventory(inventory: Inventory)
 }

@@ -11,5 +11,6 @@
     <color name="inv_black_80">#CC000000</color>
     <color name="inv_gray_toolbar">#424242</color>
     <color name="inv_orange">#E7522E</color>
+    <color name="icon_color">#FA8523</color>"
     <color name="inv_white">#FFFFFFFF</color>
 </resources>
