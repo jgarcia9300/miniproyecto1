@@ -29,8 +29,13 @@
             app:destination="@id/loginFragment" />
     </fragment>
     <fragment
-        android:id="@+id/testFragment"
-        android:name="com.univalle.miniproyecto1.view.fragment.TestFragment"
-        android:label="testFragment"
-        tools:layout="@layout/fragment_test" />
+        android:id="@+id/itemDetailsFragment"
+        android:name="com.univalle.miniproyecto1.view.fragment.ItemDetailsFragment"
+        android:label="ItemDetailsFragment" />
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="com.univalle.miniproyecto1.view.fragment.AddItemFragment"
+        android:label="fragment_add_item"
+        tools:layout="@layout/fragment_add_item" />
+
 </navigation>
