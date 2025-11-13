@@ -21,4 +21,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "miniproyecto1"
 include(":app")
- 
