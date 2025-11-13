@@ -5,7 +5,8 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:context=".HomeFragment">
+        tools:context=".ItemDetailsFragment">
+
 
 
         <com.google.android.material.appbar.AppBarLayout
@@ -14,26 +15,13 @@
 
 
             <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar_home_inventory"
+                android:id="@+id/toolbar_detail_item"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@color/inv_gray_toolbar"
-                app:title="Inventario"
+                app:navigationIcon="@drawable/ic_back"
+                app:title="Detalle del producto"
                 app:titleTextColor="@color/white">
-
-                <ImageView
-                    android:id="@+id/imageToolbarHome"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/salida"
-                    android:clickable="true"
-                    android:layout_gravity="end"
-                    android:padding="2dp"
-                    android:layout_marginEnd="20dp"
-                    android:background="?selectableItemBackgroundBorderless">
-
-                </ImageView>
-
 
             </androidx.appcompat.widget.Toolbar>
 
