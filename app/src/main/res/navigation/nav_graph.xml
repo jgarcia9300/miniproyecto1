@@ -17,6 +17,22 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.univalle.miniproyecto1.view.fragment.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_itemDetailsFragment"
+            app:destination="@id/itemDetailsFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_addItemFragment"
+            app:destination="@id/addItemFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/itemDetailsFragment"
+        android:name="com.univalle.miniproyecto1.view.fragment.ItemDetailsFragment"
+        android:label="ItemDetailsFragment" />
+    <fragment
+        android:id="@+id/addItemFragment"
+        android:name="com.univalle.miniproyecto1.view.fragment.AddItemFragment"
+        android:label="fragment_add_item"
+        tools:layout="@layout/fragment_add_item" />
 
 </navigation>

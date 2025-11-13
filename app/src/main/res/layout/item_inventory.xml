@@ -31,9 +31,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="Producto"
+                    android:text="@string/producto"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:textColor="@color/black"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent" />
 
@@ -43,19 +44,21 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="12dp"
                     android:padding="5dp"
-                    android:text="$00.000"
+                    android:text="@string/price_item"
+                    android:textColor="@color/inv_orange"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     card_view:layout_constraintEnd_toEndOf="parent"
                     card_view:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvId_Item"
+                    android:id="@+id/tvQuantity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="5dp"
-                    android:text="id: 05"
+                    android:text="@string/id_item"
                     android:textSize="17sp"
+                    android:textColor="@color/black"
                     card_view:layout_constraintStart_toStartOf="parent"
                     card_view:layout_constraintTop_toBottomOf="@+id/tvName" />
 

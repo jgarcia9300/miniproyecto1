@@ -19,7 +19,7 @@ class InventoryViewHolder(binding: ItemInventoryBinding, navController: NavContr
         bindingItem.cvInventory.setOnClickListener {
             val bundle = Bundle()
             bundle.putSerializable("clave", inventory)
-            navController.navigate(R.id.action_homeInventoryFragment_to_itemDetailsFragment, bundle)
+            navController.navigate(R.id.action_homeFragment_to_itemDetailsFragment, bundle)
         }
 
     }

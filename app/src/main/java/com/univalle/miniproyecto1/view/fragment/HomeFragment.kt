@@ -31,17 +31,17 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        /*controladores()*/
+        controladores()
         observadorViewModel()
 
     }
 
-    /*private fun controladores() {
+    private fun controladores() {
         binding.fbagregar.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_addItemFragment)
         }
 
-    }*/
+    }
 
     private fun observadorViewModel(){
         observerListInventory()

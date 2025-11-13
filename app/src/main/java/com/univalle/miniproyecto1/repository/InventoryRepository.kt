@@ -1,8 +1,6 @@
 package com.univalle.miniproyecto1.repository
 
-import android.R
 import android.content.Context
-import android.media.tv.AdResponse
 import com.univalle.miniproyecto1.data.InventoryDao
 import com.univalle.miniproyecto1.data.InventoryDB
 import com.univalle.miniproyecto1.model.Inventory

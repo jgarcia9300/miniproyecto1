@@ -4,4 +4,23 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="inventario">Inventario</string>
     <string name="button_add">button add</string>
+    <string name="producto">Producto</string>
+    <string name="id_item">id: 05</string>
+    <string name="price_item">$00.000</string>
+    <string name="preference_file_key">com.univalle.miniproyecto1.PREFERENCE_FILE</string>
+
+    <string name="is_logged_in">isLoggedIn</string>
+    <string name="eliminar">Eliminar</string>
+    <string name="precio_unidad">Precio Unidad :</string>
+    <string name="item">Item:</string>
+    <string name="_15_000">$15.000</string>
+    <string name="cantidad_disponible">Cantidad Disponible:</string>
+    <string name="_5">$5</string>
+    <string name="_100_000">$ 100.000</string>
+    <string name="total">Total:</string>
+    <string name="cantidad">Cantidad</string>
+    <string name="precio">Precio</string>
+    <string name="guardar">Guardar</string>
+    <string name="nombre_art_culo">Nombre artículo</string>
+    <string name="c_digo_producto">Código producto</string>
 </resources>
