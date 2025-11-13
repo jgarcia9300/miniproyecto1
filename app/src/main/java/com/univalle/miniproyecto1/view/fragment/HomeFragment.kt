@@ -39,6 +39,9 @@ class HomeFragment : Fragment() {
     private fun controladores() {
         binding.fbagregar.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_addItemFragment)
+            }
+        binding.contentToolbar.imageToolbarHome.setOnClickListener(){
+            findNavController().popBackStack()
         }
 
     }

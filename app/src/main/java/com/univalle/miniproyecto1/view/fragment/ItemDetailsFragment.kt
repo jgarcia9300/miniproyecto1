@@ -35,6 +35,10 @@ class ItemDetailsFragment : Fragment() {
             deleteInventory()
         }
 
+        binding.contentToolbar2.toolbarDetailItem.setNavigationOnClickListener{
+            findNavController().popBackStack()
+        }
+
        /* binding.fbEdit.setOnClickListener {
             val bundle = Bundle()
             bundle.putSerializable("dataInventory", receivedInventory)
