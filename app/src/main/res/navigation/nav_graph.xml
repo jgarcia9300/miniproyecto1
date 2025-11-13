@@ -33,9 +33,4 @@
         android:name="com.univalle.miniproyecto1.view.fragment.TestFragment"
         android:label="testFragment"
         tools:layout="@layout/fragment_test" />
-    <fragment
-        android:id="@+id/detalleProductoFragment"
-        android:name="com.univalle.miniproyecto1.view.detalle.DetalleProductoFragment"
-        android:label="fragment_detalle_producto"
-        tools:layout="@layout/fragment_detalle_producto" />
 </navigation>
