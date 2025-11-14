@@ -34,4 +34,47 @@ class InventoryViewModel(application: Application) : AndroidViewModel(applicatio
             }
         }
     }
+
+    fun getListInventory() {
+        viewModelScope.launch {
+            _progresState.value = true
+            try {
+                _listInventory.value = inventoryRepository.getListInventory()
+                _progresState.value = false
+            } catch (e: Exception) {
+                _progresState.value = false
+            }
+
+        }
+    }
+
+    fun deleteInventory(inventory: Inventory) {
+        viewModelScope.launch {
+            _progresState.value = true
+            try {
+                inventoryRepository.deleteInventory(inventory)
+                _progresState.value = false
+            } catch (e: Exception) {
+                _progresState.value = false
+            }
+
+        }
+    }
+
+    fun updateInventory(inventory: Inventory) {
+        viewModelScope.launch {
+            _progresState.value = true
+            try {
+                inventoryRepository.updateRepositoy(inventory)
+                _progresState.value = false
+            } catch (e: Exception) {
+                _progresState.value = false
+            }
+        }
+    }
+
+    fun totalProducto(price: Int, quantity: Int): Double {
+        val total = price * quantity
+        return total.toDouble()
+    }
 }

@@ -58,7 +58,7 @@ class LoginFragment : Fragment() {
                     Toast.makeText(context,
                         "Autenticacion exitosa. Bienvenido", Toast.LENGTH_SHORT)
                         .show()
-                    findNavController().navigate(R.id.action_loginFragment_to_testFragment)
+                    findNavController().navigate(R.id.action_loginFragment_to_homeFragment2)
                 }
 
                 override fun onAuthenticationFailed() {
