@@ -5,56 +5,116 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.univalle.miniproyecto1.R
+import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
+import com.univalle.miniproyecto1.databinding.FragmentItemEditBinding
+import com.univalle.miniproyecto1.model.Inventory
+import com.univalle.miniproyecto1.viewmodel.InventoryViewModel
+import androidx.fragment.app.activityViewModels
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
-/**
- * A simple [Fragment] subclass.
- * Use the [ItemEditFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ItemEditFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var binding: FragmentItemEditBinding
+    private val inventoryViewModel: InventoryViewModel by activityViewModels()
+
+    private lateinit var receivedInventory: Inventory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_item_edit, container, false)
+    ): View {
+        binding = FragmentItemEditBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment ItemEditFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            ItemEditFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        recibirDatos()
+        configurarToolbar()
+        configurarBotonEditar()
+        observarCambiosCampos()
+    }
+
+    private fun recibirDatos() {
+        arguments?.let { bundle ->
+            receivedInventory = bundle.getSerializable("dataInventory") as Inventory
+
+            binding.txtIdValue.text = receivedInventory.id.toString()
+            binding.edtNombre.setText(receivedInventory.name)
+            binding.edtPrecio.setText(receivedInventory.price.toString())
+            binding.edtCantidad.setText(receivedInventory.quantity.toString())
+        }
+    }
+
+    private fun configurarToolbar() {
+        binding.contentToolbar2.toolbarEdit.setNavigationOnClickListener {
+            findNavController().popBackStack()
+        }
+    }
+
+    private fun configurarBotonEditar() {
+        binding.btnEditar.setOnClickListener {
+            actualizarProducto()
+        }
+    }
+
+    private fun observarCambiosCampos() {
+        val watcher = object : android.text.TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: android.text.Editable?) {
+                validarCampos()
             }
+        }
+
+        binding.edtNombre.addTextChangedListener(watcher)
+        binding.edtPrecio.addTextChangedListener(watcher)
+        binding.edtCantidad.addTextChangedListener(watcher)
+
+        validarCampos()
+    }
+
+    private fun validarCampos() {
+        val nombre = binding.edtNombre.text.toString().trim()
+        val precio = binding.edtPrecio.text.toString().trim()
+        val cantidad = binding.edtCantidad.text.toString().trim()
+
+        val habilitado = nombre.isNotEmpty() && precio.isNotEmpty() && cantidad.isNotEmpty()
+        binding.btnEditar.isEnabled = habilitado
+        binding.btnEditar.alpha = if (habilitado) 1f else 0.5f
+    }
+
+    private fun actualizarProducto() {
+        val nombre = binding.edtNombre.text.toString().trim()
+        val precioText = binding.edtPrecio.text.toString().trim()
+        val cantidadText = binding.edtCantidad.text.toString().trim()
+
+        val precio = precioText.toIntOrNull()
+        val cantidad = cantidadText.toIntOrNull()
+
+        if (precio == null) {
+            binding.edtPrecio.error = "Precio inválido"
+            return
+        }
+        if (cantidad == null) {
+            binding.edtCantidad.error = "Cantidad inválida"
+            return
+        }
+
+
+        val productoActualizado = Inventory(
+            id = receivedInventory.id,
+            code = receivedInventory.code,   // STRING ✔
+            name = nombre,
+            price = precio,                  // INT ✔
+            quantity = cantidad              // INT ✔
+        )
+
+        inventoryViewModel.updateInventory(productoActualizado)
+        inventoryViewModel.getListInventory()
+
+        findNavController().popBackStack()
     }
 }
