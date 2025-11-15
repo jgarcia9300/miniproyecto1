@@ -14,25 +14,45 @@
             android:id="@+id/action_loginFragment_to_homeFragment2"
             app:destination="@id/homeFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.univalle.miniproyecto1.view.fragment.HomeFragment"
-        android:label="HomeFragment" >
+        android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_itemDetailsFragment"
             app:destination="@id/itemDetailsFragment" />
         <action
             android:id="@+id/action_homeFragment_to_addItemFragment"
             app:destination="@id/addItemFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/itemDetailsFragment"
         android:name="com.univalle.miniproyecto1.view.fragment.ItemDetailsFragment"
-        android:label="ItemDetailsFragment" />
+        android:label="ItemDetailsFragment">
+
+
+        <action
+            android:id="@+id/action_itemDetailsFragment_to_itemEditFragment"
+            app:destination="@id/itemEditFragment" />
+
+    </fragment>
+
     <fragment
         android:id="@+id/addItemFragment"
         android:name="com.univalle.miniproyecto1.view.fragment.AddItemFragment"
         android:label="fragment_add_item"
         tools:layout="@layout/fragment_add_item" />
+
+
+    <fragment
+        android:id="@+id/itemEditFragment"
+        android:name="com.univalle.miniproyecto1.view.fragment.ItemEditFragment"
+        android:label="Editar Producto"
+        tools:layout="@layout/fragment_item_edit" />
 
 </navigation>

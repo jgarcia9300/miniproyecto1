@@ -7,20 +7,20 @@ import com.univalle.miniproyecto1.R
 import com.univalle.miniproyecto1.databinding.ItemInventoryBinding
 import com.univalle.miniproyecto1.model.Inventory
 
-class InventoryViewHolder(binding: ItemInventoryBinding, navController: NavController) :
+class InventoryViewHolder(private val binding: ItemInventoryBinding, private val navController: NavController) :
     RecyclerView.ViewHolder(binding.root) {
-    val bindingItem = binding
-    val navController = navController
-    fun setItemInventory(inventory: Inventory) {
-        bindingItem.tvName.text = inventory.name
-        bindingItem.tvPrice.text = "$ ${inventory.price}"
-        bindingItem.tvQuantity.text = "${inventory.quantity}"
 
-        bindingItem.cvInventory.setOnClickListener {
-            val bundle = Bundle()
-            bundle.putSerializable("clave", inventory)
+    fun setItemInventory(inventory: Inventory) {
+
+        binding.tvName.text = inventory.name
+        binding.tvPrice.text = "$ ${inventory.price}"
+        binding.tvQuantity.text = "${inventory.quantity}"
+
+        binding.cvInventory.setOnClickListener {
+            val bundle = Bundle().apply {
+                putSerializable("dataInventory", inventory)
+            }
             navController.navigate(R.id.action_homeFragment_to_itemDetailsFragment, bundle)
         }
-
     }
 }
