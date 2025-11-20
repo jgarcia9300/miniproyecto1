@@ -42,8 +42,6 @@ class HomeFragment : Fragment() {
         }
 
         binding.contentToolbar.imageToolbarHome.setOnClickListener {
-            // Este botón de la toolbar en HomeFragment debería hacer algo diferente si no es el primer fragmento,
-            // pero si está diseñado para "volver", popBackStack() está bien.
             findNavController().popBackStack()
         }
     }

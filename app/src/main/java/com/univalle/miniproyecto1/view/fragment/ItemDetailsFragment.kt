@@ -15,7 +15,6 @@ import androidx.fragment.app.activityViewModels
 class ItemDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentItemDetailsBinding
-    // Usamos activityViewModels() para compartir el ViewModel con el Fragment de Home/Edición
     private val inventoryViewModel: InventoryViewModel by activityViewModels()
 
     private lateinit var receivedInventory: Inventory
@@ -31,20 +30,13 @@ class ItemDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // 1. Cargamos y mostramos los datos del Bundle inmediatamente.
         loadAndDisplayInitialData()
-
-        // 2. Controladores de botones
         controladores()
-
-        // 3. Observador para cambios futuros (ej. después de editar).
         observerInventoryUpdates()
     }
 
     private fun controladores() {
         binding.btnDelete.setOnClickListener {
-            // ... (Lógica de diálogo de eliminación, el código es correcto)
             val dialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
                 .setTitle("Confirmar eliminación")
                 .setMessage("¿Estás seguro de que deseas eliminar este producto?")
@@ -82,26 +74,27 @@ class ItemDetailsFragment : Fragment() {
     private fun loadAndDisplayInitialData() {
         val receivedBundle = arguments
             ?: run {
-                findNavController().popBackStack() // Volver si no hay datos
+                findNavController().popBackStack()
                 return
             }
 
         val data = receivedBundle.getSerializable("dataInventory") as? Inventory
             ?: run {
-                findNavController().popBackStack() // Volver si el objeto es nulo o incorrecto
+                findNavController().popBackStack()
                 return
             }
 
         receivedInventory = data
+        renderInventoryData(receivedInventory)
+    }
 
-
+    private fun observerInventoryUpdates() {
         inventoryViewModel.listInventory.observe(viewLifecycleOwner) { list ->
 
             val updatedItem = list.firstOrNull { it.id == receivedInventory.id }
 
             if (updatedItem != null) {
-                receivedInventory = updatedItem // actualizar objeto interno
-                // Actualizamos la UI con los datos frescos del LiveData
+                receivedInventory = updatedItem
                 renderInventoryData(updatedItem)
             }
         }

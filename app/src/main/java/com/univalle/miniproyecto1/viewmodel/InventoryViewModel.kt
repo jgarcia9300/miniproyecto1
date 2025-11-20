@@ -57,7 +57,7 @@ class InventoryViewModel(application: Application) : AndroidViewModel(applicatio
             try {
                 inventoryRepository.deleteInventory(inventory)
 
-                // 🔥 REFRESCAR LISTA
+                // REFRESCAR LISTA
                 _listInventory.value = inventoryRepository.getListInventory()
 
             } finally {
