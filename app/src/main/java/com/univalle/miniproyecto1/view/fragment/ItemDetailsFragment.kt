@@ -94,11 +94,7 @@ class ItemDetailsFragment : Fragment() {
 
         receivedInventory = data
 
-        // Mostrar los datos inmediatamente después de recibirlos
-        renderInventoryData(receivedInventory)
-    }
 
-    private fun observerInventoryUpdates() {
         inventoryViewModel.listInventory.observe(viewLifecycleOwner) { list ->
 
             val updatedItem = list.firstOrNull { it.id == receivedInventory.id }
