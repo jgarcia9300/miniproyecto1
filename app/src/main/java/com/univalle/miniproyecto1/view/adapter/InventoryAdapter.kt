@@ -1,5 +1,6 @@
 package com.univalle.miniproyecto1.view.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.NavController
@@ -9,7 +10,8 @@ import com.univalle.miniproyecto1.model.Inventory
 import com.univalle.miniproyecto1.view.viewholder.InventoryViewHolder
 
 class InventoryAdapter(
-    private val listInventory: MutableList<Inventory>,
+    // CORRECCIÓN 1: Cambiamos List<T> a List<Inventory>
+    private var listInventory: List<Inventory>,
     private val navController: NavController
 ) : RecyclerView.Adapter<InventoryViewHolder>() {
 
@@ -35,5 +37,12 @@ class InventoryAdapter(
         holder.itemView.setOnClickListener {
             onClickItem?.invoke(inventory)
         }
+    }
+
+    // CORRECCIÓN 2: Función necesaria para actualizar la lista desde el ViewModel en HomeFragment
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateList(newList: List<Inventory>) {
+        listInventory = newList
+        notifyDataSetChanged()
     }
 }

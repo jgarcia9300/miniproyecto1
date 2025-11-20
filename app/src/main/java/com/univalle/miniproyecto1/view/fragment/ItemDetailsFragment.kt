@@ -15,6 +15,7 @@ import androidx.fragment.app.activityViewModels
 class ItemDetailsFragment : Fragment() {
 
     private lateinit var binding: FragmentItemDetailsBinding
+    // Usamos activityViewModels() para compartir el ViewModel con el Fragment de Home/Edición
     private val inventoryViewModel: InventoryViewModel by activityViewModels()
 
     private lateinit var receivedInventory: Inventory
@@ -30,13 +31,20 @@ class ItemDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dataInventory()
+
+        // 1. Cargamos y mostramos los datos del Bundle inmediatamente.
+        loadAndDisplayInitialData()
+
+        // 2. Controladores de botones
         controladores()
+
+        // 3. Observador para cambios futuros (ej. después de editar).
+        observerInventoryUpdates()
     }
 
     private fun controladores() {
-
         binding.btnDelete.setOnClickListener {
+            // ... (Lógica de diálogo de eliminación, el código es correcto)
             val dialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
                 .setTitle("Confirmar eliminación")
                 .setMessage("¿Estás seguro de que deseas eliminar este producto?")
@@ -62,28 +70,43 @@ class ItemDetailsFragment : Fragment() {
         }
     }
 
-    private fun dataInventory() {
+    // Función auxiliar para renderizar los datos en la UI
+    private fun renderInventoryData(item: Inventory) {
+        binding.tvItem.text = item.name
+        binding.tvPrice.text = "$ ${item.price}"
+        binding.tvQuantity.text = item.quantity.toString()
+        binding.txtTotal.text =
+            "$ ${inventoryViewModel.totalProducto(item.price, item.quantity)}"
+    }
+
+    private fun loadAndDisplayInitialData() {
         val receivedBundle = arguments
-            ?: throw Exception("ERROR: El Bundle llegó nulo a ItemDetailsFragment")
+            ?: run {
+                findNavController().popBackStack() // Volver si no hay datos
+                return
+            }
 
-        val data = receivedBundle.getSerializable("dataInventory")
-            ?: throw Exception("ERROR: 'dataInventory' NO existe en el Bundle")
+        val data = receivedBundle.getSerializable("dataInventory") as? Inventory
+            ?: run {
+                findNavController().popBackStack() // Volver si el objeto es nulo o incorrecto
+                return
+            }
 
-        receivedInventory = data as Inventory
+        receivedInventory = data
 
-        // 🔥 OBSERVAR LISTA DEL INVENTORY PARA ACTUALIZAR DETALLE AL EDITAR
+        // Mostrar los datos inmediatamente después de recibirlos
+        renderInventoryData(receivedInventory)
+    }
+
+    private fun observerInventoryUpdates() {
         inventoryViewModel.listInventory.observe(viewLifecycleOwner) { list ->
 
             val updatedItem = list.firstOrNull { it.id == receivedInventory.id }
 
             if (updatedItem != null) {
-                receivedInventory = updatedItem  // actualizar objeto
-
-                binding.tvItem.text = updatedItem.name
-                binding.tvPrice.text = "$ ${updatedItem.price}"
-                binding.tvQuantity.text = updatedItem.quantity.toString()
-                binding.txtTotal.text =
-                    "$ ${inventoryViewModel.totalProducto(updatedItem.price, updatedItem.quantity)}"
+                receivedInventory = updatedItem // actualizar objeto interno
+                // Actualizamos la UI con los datos frescos del LiveData
+                renderInventoryData(updatedItem)
             }
         }
     }

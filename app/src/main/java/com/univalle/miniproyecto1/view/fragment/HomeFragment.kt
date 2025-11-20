@@ -17,12 +17,13 @@ import com.univalle.miniproyecto1.viewmodel.InventoryViewModel
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+    // Usamos viewModels() aquí para asociar el ViewModel al Fragment
     private val inventoryViewModel: InventoryViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentHomeBinding.inflate(inflater)
         binding.lifecycleOwner = this
         return binding.root
@@ -41,6 +42,8 @@ class HomeFragment : Fragment() {
         }
 
         binding.contentToolbar.imageToolbarHome.setOnClickListener {
+            // Este botón de la toolbar en HomeFragment debería hacer algo diferente si no es el primer fragmento,
+            // pero si está diseñado para "volver", popBackStack() está bien.
             findNavController().popBackStack()
         }
     }
@@ -53,23 +56,23 @@ class HomeFragment : Fragment() {
     private fun observerListInventory() {
         inventoryViewModel.getListInventory()
 
-        inventoryViewModel.listInventory.observe(viewLifecycleOwner) { listInventory ->
-            val recycler = binding.recyclerview
-            recycler.layoutManager = LinearLayoutManager(context)
+        val recycler = binding.recyclerview
+        val layoutManager =LinearLayoutManager(context)
+        recycler.layoutManager = layoutManager
+        val adapter = InventoryAdapter(emptyList(), findNavController()) // Inicializamos con lista vacía
+        recycler.adapter = adapter
 
-            val adapter = InventoryAdapter(listInventory, findNavController())
-            recycler.adapter = adapter
-            adapter.notifyDataSetChanged()
+        adapter.onClickItem = { producto ->
+            val bundle = Bundle()
+            bundle.putSerializable("dataInventory", producto)
+            findNavController().navigate(
+                R.id.action_homeFragment_to_itemDetailsFragment,
+                bundle
+            )
+        }
 
-            // === CLICK EN ITEM PARA ABRIR DETALLES ===
-            adapter.onClickItem = { producto ->
-                val bundle = Bundle()
-                bundle.putSerializable("dataInventory", producto)
-                findNavController().navigate(
-                    R.id.action_homeFragment_to_itemDetailsFragment,
-                    bundle
-                )
-            }
+        inventoryViewModel.listInventory.observe(viewLifecycleOwner){ listInventory ->
+            adapter.updateList(listInventory)
         }
     }
 
