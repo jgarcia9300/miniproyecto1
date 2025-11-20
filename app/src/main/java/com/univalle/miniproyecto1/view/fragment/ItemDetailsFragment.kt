@@ -30,12 +30,12 @@ class ItemDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dataInventory()
+        loadAndDisplayInitialData()
         controladores()
+        observerInventoryUpdates()
     }
 
     private fun controladores() {
-
         binding.btnDelete.setOnClickListener {
             val dialog = androidx.appcompat.app.AlertDialog.Builder(requireContext())
                 .setTitle("Confirmar eliminación")
@@ -62,28 +62,40 @@ class ItemDetailsFragment : Fragment() {
         }
     }
 
-    private fun dataInventory() {
+    // Función auxiliar para renderizar los datos en la UI
+    private fun renderInventoryData(item: Inventory) {
+        binding.tvItem.text = item.name
+        binding.tvPrice.text = "$ ${item.price}"
+        binding.tvQuantity.text = item.quantity.toString()
+        binding.txtTotal.text =
+            "$ ${inventoryViewModel.totalProducto(item.price, item.quantity)}"
+    }
+
+    private fun loadAndDisplayInitialData() {
         val receivedBundle = arguments
-            ?: throw Exception("ERROR: El Bundle llegó nulo a ItemDetailsFragment")
+            ?: run {
+                findNavController().popBackStack()
+                return
+            }
 
-        val data = receivedBundle.getSerializable("dataInventory")
-            ?: throw Exception("ERROR: 'dataInventory' NO existe en el Bundle")
+        val data = receivedBundle.getSerializable("dataInventory") as? Inventory
+            ?: run {
+                findNavController().popBackStack()
+                return
+            }
 
-        receivedInventory = data as Inventory
+        receivedInventory = data
+        renderInventoryData(receivedInventory)
+    }
 
-
+    private fun observerInventoryUpdates() {
         inventoryViewModel.listInventory.observe(viewLifecycleOwner) { list ->
 
             val updatedItem = list.firstOrNull { it.id == receivedInventory.id }
 
             if (updatedItem != null) {
-                receivedInventory = updatedItem  // actualizar objeto
-
-                binding.tvItem.text = updatedItem.name
-                binding.tvPrice.text = "$ ${updatedItem.price}"
-                binding.tvQuantity.text = updatedItem.quantity.toString()
-                binding.txtTotal.text =
-                    "$ ${inventoryViewModel.totalProducto(updatedItem.price, updatedItem.quantity)}"
+                receivedInventory = updatedItem
+                renderInventoryData(updatedItem)
             }
         }
     }
