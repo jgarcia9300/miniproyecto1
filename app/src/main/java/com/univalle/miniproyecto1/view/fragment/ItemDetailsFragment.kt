@@ -71,7 +71,7 @@ class ItemDetailsFragment : Fragment() {
 
         receivedInventory = data as Inventory
 
-        // 🔥 OBSERVAR LISTA DEL INVENTORY PARA ACTUALIZAR DETALLE AL EDITAR
+
         inventoryViewModel.listInventory.observe(viewLifecycleOwner) { list ->
 
             val updatedItem = list.firstOrNull { it.id == receivedInventory.id }
