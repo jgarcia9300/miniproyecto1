@@ -39,6 +39,9 @@ class AddItemFragment : Fragment() {
         binding.btnSaveInventory.setOnClickListener {
             saveInvetory()
         }
+        binding.contentToolbar2.toolbarCreateItem.setNavigationOnClickListener{
+            findNavController().popBackStack()
+        }
     }
 
     private fun saveInvetory(){

@@ -13,7 +13,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/inv_black_80"
-        tools:context=".view.fragment.AddItemFragment">
+        tools:context=".view.fragment.AddItemFragment"
+        android:fitsSystemWindows="true"
+        >
 
         <include
             android:id="@+id/contentToolbar2"
