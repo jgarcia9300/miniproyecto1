@@ -20,7 +20,6 @@ class InventoryViewModel(application: Application) : AndroidViewModel(applicatio
     val progresState: LiveData<Boolean> get() = _progresState
 
 
-
     fun saveInventory(inventory: Inventory, message: (String) -> Unit) {
         viewModelScope.launch {
             _progresState.value = true
