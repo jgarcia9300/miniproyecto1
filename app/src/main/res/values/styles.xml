@@ -9,4 +9,11 @@
         <item name="android:background">?android:attr/colorBackground</item>
         <item name="android:textColor">?android:attr/textColorPrimary</item>
     </style>
+
+    <style name="CustomOutlinedBox" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxBackgroundColor">@null</item>
+        <item name="boxBackgroundMode">none</item>
+        <item name="android:background">@drawable/bg_redondo2</item>
+        <item name="boxStrokeColor">@android:color/transparent</item>
+    </style>
 </resources>
