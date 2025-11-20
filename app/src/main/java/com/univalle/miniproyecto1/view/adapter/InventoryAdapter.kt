@@ -10,7 +10,6 @@ import com.univalle.miniproyecto1.model.Inventory
 import com.univalle.miniproyecto1.view.viewholder.InventoryViewHolder
 
 class InventoryAdapter(
-    // CORRECCIÓN 1: Cambiamos List<T> a List<Inventory>
     private var listInventory: List<Inventory>,
     private val navController: NavController
 ) : RecyclerView.Adapter<InventoryViewHolder>() {
@@ -39,7 +38,6 @@ class InventoryAdapter(
         }
     }
 
-    // CORRECCIÓN 2: Función necesaria para actualizar la lista desde el ViewModel en HomeFragment
     @SuppressLint("NotifyDataSetChanged")
     fun updateList(newList: List<Inventory>) {
         listInventory = newList
