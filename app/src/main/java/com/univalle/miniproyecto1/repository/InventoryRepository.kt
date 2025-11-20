@@ -40,4 +40,12 @@ class InventoryRepository(context: Context) {
             inventoryDao.updateInventory(inventory)
         }
     }
+
+    // Obtener saldo total del inventario
+    suspend fun getInventoryTotalBalance(): Double {
+        return withContext(Dispatchers.IO) {
+            val result = inventoryDao.getInventoryTotalBalance()
+            result ?: 0.0 // si es null (tabla vacía), devolver 0
+        }
+    }
 }
