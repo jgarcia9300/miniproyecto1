@@ -45,26 +45,39 @@ class AddItemFragment : Fragment() {
     }
 
     private fun saveInvetory(){
-        val codigo = binding.etCodigo.text.toString()
-        val name = binding.etName.text.toString()
-        val price = binding.etPrice.text.toString().toInt()
-        val quantity = binding.etQuantity.text.toString().toInt()
-        val inventory = Inventory(code = codigo,name = name, price = price, quantity = quantity)
+        val codigo = binding.etCodigo.text.toString().trim()
+        val name = binding.etName.text.toString().trim()
+        val priceText = binding.etPrice.text.toString().trim()
+        val quantityText = binding.etQuantity.text.toString().trim()
 
-        inventoryViewModel.saveInventory(inventory){message ->
-            Toast.makeText(context,"Artículo guardado !!", Toast.LENGTH_SHORT).show()
+        val price = priceText.toIntOrNull()
+        val quantity = quantityText.toIntOrNull()
+
+        if (price == null) {
+            Toast.makeText(context, "Precio inválido", Toast.LENGTH_SHORT).show()
+            return
+        }
+        if (quantity == null) {
+            Toast.makeText(context, "Cantidad inválida", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val inventory = Inventory(code = codigo, name = name, price = price, quantity = quantity)
+
+        inventoryViewModel.saveInventory(inventory) { message ->
+            Toast.makeText(context, "Artículo guardado !!", Toast.LENGTH_SHORT).show()
             findNavController().popBackStack()
         }
-        Log.d("test",inventory.toString())
+        Log.d("AddItemFragment", "Producto guardado: ${inventory.toString()}")
     }
 
     private fun validarDatos() {
-        val listEditText = listOf(binding.etCodigo,binding.etName, binding.etPrice, binding.etQuantity)
+        val listEditText = listOf(binding.etCodigo, binding.etName, binding.etPrice, binding.etQuantity)
 
         for (editText in listEditText) {
             editText.addTextChangedListener {
-                val isListFull = listEditText.all{
-                    it.text.isNotEmpty() // si toda la lista no está vacía
+                val isListFull = listEditText.all { editText ->
+                    editText.text.toString().trim().isNotEmpty()
                 }
                 binding.btnSaveInventory.isEnabled = isListFull
             }
