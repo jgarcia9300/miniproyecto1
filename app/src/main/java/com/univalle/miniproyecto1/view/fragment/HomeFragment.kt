@@ -36,6 +36,13 @@ class HomeFragment : Fragment() {
         observadorViewModel()
     }
 
+    override fun onResume() {
+        super.onResume()
+        // Refrescar la lista cuando el fragment se vuelve visible
+        // Esto asegura que se muestren los productos recién agregados
+        inventoryViewModel.getListInventory()
+    }
+
     private fun controladores() {
         binding.fbagregar.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_addItemFragment)

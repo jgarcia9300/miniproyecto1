@@ -26,23 +26,17 @@
             android:id="@+id/etCodigo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-
             android:layout_marginTop="52dp"
-
             android:layout_gravity="center"
             android:textColor="@color/inv_white"
-
             android:textColorHint="@color/inv_white"
-
             android:hint="@string/c_digo_producto"
-            android:background="@drawable/bg_redondo2"
+            android:background="@drawable/bg_edittext_focused"
             android:padding="18dp"
-            android:inputType="text"
-            android:maxLength="10"
-
+            android:inputType="number"
+            android:maxLength="4"
             app:layout_constraintTop_toBottomOf="@id/contentToolbar2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -52,23 +46,17 @@
             android:id="@+id/etName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-
             android:layout_marginTop="20dp"
-
             android:layout_gravity="center"
             android:textColor="@color/inv_white"
-
             android:textColorHint="@color/inv_white"
-
             android:hint="@string/nombre_art_culo"
-            android:background="@drawable/bg_redondo2"
+            android:background="@drawable/bg_edittext_focused"
             android:padding="18dp"
-            android:inputType="text"
-            android:maxLength="10"
-
+            android:inputType="textCapSentences"
+            android:maxLength="40"
             app:layout_constraintTop_toBottomOf="@id/etCodigo"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -78,21 +66,17 @@
             android:id="@+id/etPrice"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-
             android:layout_marginTop="20dp"
-
             android:layout_gravity="center"
-
             android:textColorHint="@color/inv_white"
             android:textColor="@color/inv_white"
-
             android:hint="@string/precio"
-            android:background="@drawable/bg_redondo2"
+            android:background="@drawable/bg_edittext_focused"
             android:padding="18dp"
             android:inputType="number"
+            android:maxLength="20"
             app:layout_constraintTop_toBottomOf="@id/etName"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -101,21 +85,17 @@
             android:id="@+id/etQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-
             android:layout_marginTop="20dp"
-
             android:layout_gravity="center"
-
             android:textColorHint="@color/inv_white"
             android:textColor="@color/inv_white"
-
             android:hint="@string/cantidad"
-            android:background="@drawable/bg_redondo2"
+            android:background="@drawable/bg_edittext_focused"
             android:padding="18dp"
             android:inputType="number"
+            android:maxLength="4"
             app:layout_constraintTop_toBottomOf="@id/etPrice"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
@@ -127,10 +107,11 @@
             android:layout_marginTop="45dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-
             android:text="@string/guardar"
+            android:textColor="@color/inv_white"
+            android:textStyle="bold"
             android:enabled="false"
-            android:background="@drawable/bg_redondo"
+            android:background="@drawable/bg_button_enabled"
             app:layout_constraintTop_toBottomOf="@+id/etQuantity"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
